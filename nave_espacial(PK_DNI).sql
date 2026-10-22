@@ -5,7 +5,7 @@ CREATE TABLE candidatos(
     dni varchar(9) PRIMARY KEY,
     nombre varchar(40),
     profesion varchar(60),
-    edad tinyint,
+    edad tinyint(edad >= 25 AND edad <= 60),
     anio_nacimiento smallint,
     fisico tinyint,
     convivencia tinyint,
