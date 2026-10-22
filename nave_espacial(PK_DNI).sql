@@ -16,7 +16,7 @@ CREATE TABLE habilidades(
     idhabilidad tinyint AUTO_INCREMENT PRIMARY KEY,
     dni varchar(9),
     habilidad varchar(40) NULL,
-    FOREIGN KEY (dni) REFERENCES candidatos(dni) ON DELETE CASCADE
+    CONSTRAINT FK_DNI_candidato FOREIGN KEY (dni) REFERENCES candidatos(dni) ON DELETE CASCADE
 );
 
 INSERT INTO `candidatos` (`dni`,`nombre`, `profesion`, `edad`, `anio_nacimiento`, `fisico`, `convivencia`, `experiencia`) VALUES
