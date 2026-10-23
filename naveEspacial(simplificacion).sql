@@ -9,28 +9,17 @@ CREATE TABLE `candidatos` (
   `anio_nacimiento` smallint(6) DEFAULT NULL,
   `fisico` tinyint(4) DEFAULT NULL,
   `convivencia` tinyint(4) DEFAULT NULL,
-  `experiencia` tinyint(4) DEFAULT NULL
+  `experiencia` tinyint(4) DEFAULT NULL,
+  CONSTRAINT PK_dni_candidatos PRIMARY KEY candidatos(dni)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE `candidatos`
-  ADD PRIMARY KEY (`dni`);
 
 CREATE TABLE `habilidades` (
   `idhabilidad` tinyint(4) NOT NULL,
   `dni` varchar(9) DEFAULT NULL,
-  `habilidad` varchar(40) DEFAULT NULL
+  `habilidad` varchar(40) DEFAULT NULL,
+  CONSTRAINT PK_idhabilidad_habilidades PRIMARY KEY (idhabilidad),
+  CONSTRAINT FK_dni_candidatos FOREIGN KEY (dni) REFERENCES candidatos (dni) ON DELETE CASCADE;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-ALTER TABLE `habilidades`
-  ADD PRIMARY KEY (`idhabilidad`),
-  ADD KEY `FK_DNI_candidatos` (`dni`);
-
-ALTER TABLE `habilidades`
-  MODIFY `idhabilidad` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
-ALTER TABLE `habilidades`
-  ADD CONSTRAINT `FK_DNI_candidatos` FOREIGN KEY (`dni`) REFERENCES `candidatos` (`dni`) ON DELETE CASCADE;
-COMMIT;
 
 INSERT INTO `candidatos` (`dni`, `nombre`, `profesion`, `edad`, `anio_nacimiento`, `fisico`, `convivencia`, `experiencia`) VALUES
 ('19889754O', 'Eva', 'Piloto profesional', 38, 1988, 8, 7, 15),
